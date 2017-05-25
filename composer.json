@@ -1,0 +1,38 @@
+{
+  "name": "pottkinder/estimatedreading",
+  "type": "typo3-cms-extension",
+  "description": "Counts words and sentences and calculates estimated reading for this.",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "estimatedreading"
+  ],
+  "homepage": "https://www.agentur-pottkinder.de/",
+  "authors": [
+    {
+      "name": "Bastian Bringenberg",
+      "role": "Developer",
+      "homepage": "https://www.agentur-pottkinder.de/"
+    }
+  ],
+  "license": [
+    "GPL-2.0+"
+  ],
+  "require": {
+    "typo3/cms-core": ">=8.7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.8.0",
+    "friendsofphp/php-cs-fixer": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pottkinder\\Estimatedreading\\": "Classes"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Pottkinder\\Estimatedreading\\Tests\\": "Tests"
+    }
+  }
+}
