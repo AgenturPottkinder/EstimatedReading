@@ -8,6 +8,13 @@ use Pottkinder\Estimatedreading\Model\StringGroup;
  */
 class EstimateReadingService
 {
+
+    /**
+     * Array for methodNames of Class StringGroup
+     * @var array
+     */
+    protected static $methodNames = [];
+
     /**
      * function getKeywordStringGroup
      *
@@ -68,5 +75,69 @@ class EstimateReadingService
             throw new \InvalidArgumentException("Keyword for estimated Reading should not contain special chars. Please use only 0-9 a-zA-Z and -_");
         }
         return $keyword;
+    }
+
+    /**
+     * function getReplacementArray
+     * builds replacement Array for FrontendRenderService
+     *
+     * @return array
+     */
+    public static function getReplacementArray()
+    {
+        $return = [
+            'search' => [],
+            'replace' => []
+        ];
+        foreach($GLOBALS['EXT']['estimatedreading']['stringgroup'] as $stringGroupTitle => $stringGroupContent)
+        {
+            $stringGroupCalculated = self::buildReplaceValues($stringGroupContent);
+            foreach($stringGroupCalculated as $stringGroupCalculatedTitle => $stringGroupCalulatedValue)
+            {
+                $return['search'][] = '###' . $stringGroupTitle . '_' . $stringGroupCalculatedTitle . '###';
+                $return['replace'][] = $stringGroupCalulatedValue;
+            }
+        }
+        return $return;
+    }
+
+    /**
+     * function buildReplaceValues
+     * Generates an array with all Getters from StringGroup associated with it's value
+     * 
+     * @param \Pottkinder\Estimatedreading\Model\StringGroup $content
+     * @return array
+     */
+    protected static function buildReplaceValues($content)
+    {
+        $return = [];
+        self::buildMethodNamesIfRequired($content);
+        foreach(self::$methodNames as $methodName)
+        {
+            $return[$methodName['short']] = $content->$$methodName['long'];
+        }
+        return $return;
+    }
+
+    /**
+     * function buildMethodNamesIfRequired
+     * Shorts all Get Methods from StringGroup for replacement strings
+     * 
+     * @param \Pottkinder\Estimatedreading\Model\StringGroup $content
+     * @return void
+     */
+    protected static function buildMethodNamesIfRequired($content)
+    {
+        if(length(self::$methodNames) === 0)
+        {
+            $tmpMethodNames = preg_grep('/^get/', get_class_methods($content));
+            foreach($tmpMethodNames as $methodName)
+            {
+                self::$methodNames[] = [
+                    'short' => lcfirst(substr($methodName, 3)),
+                    'long' => $methodName
+                ];
+            }
+        }
     }
 }

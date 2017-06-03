@@ -9,12 +9,16 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  *
  * # Example: Basic example
  * <code>
- * <p:EstimateReading keyword="myKeyword">{estimateReading.chars} chars</p:EstimateReading>
+ * <p:EstimateReading keyword="myKeyword" variable="chars" />
  * </code>
  * <output>
  * 1234 chars
  * </output>
  *
+ *  Warning: This will only output a placeholder which will be replaced with a hook later
+ *           Working with a hook is required in order to show times and counts before the content is shown
+ *           e.g.: "Reading the following blog article takes 5 minutes." shows 5 minutes before the blog article
+ *           is shown. 
  */
 class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -25,6 +29,7 @@ class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
     {
         parent::initializeArguments();
         $this->registerArgument('keyword', 'string', 'Keyword to Manage multiple EstimatedReadings', true, 'default');
+        $this->registerArgument('variable', 'string', 'Variable to look up in StringGroup', true, '');
     }
 
     /**
@@ -35,7 +40,10 @@ class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
     public function render()
     {
         $stringGroup = \Pottkinder\Estimatedreading\Service\EstimateReadingService::getStringGroup($arguments['keyword']);
-        $this->renderingContext->getVariableProvider()->add('estimateReading', $stringGroup);
-        return $this->renderChildren();
+        if($arguments['variable'] === '')
+        {
+            throw new Exception('Attribute "variable" of Tag EstimateReading cannot be empty!');
+        }
+        return '###' . $arguments['keyword'] . '_' . $arguments['variable'] . '###';
     }
 }
