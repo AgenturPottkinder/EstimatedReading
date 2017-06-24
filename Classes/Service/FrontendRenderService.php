@@ -43,7 +43,7 @@ class FrontendRenderService {
     {
     	$tsfe = &$parameters['pObj'];
         if ($tsfe instanceof \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController) {
-            if ($tsfe->isINTincScript() === $cached) {
+            if ($tsfe->isINTincScript() === $unCached) {
                 self::replace($tsfe->content);
             }
         }

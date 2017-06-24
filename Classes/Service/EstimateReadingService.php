@@ -94,7 +94,7 @@ class EstimateReadingService
             $stringGroupCalculated = self::buildReplaceValues($stringGroupContent);
             foreach($stringGroupCalculated as $stringGroupCalculatedTitle => $stringGroupCalulatedValue)
             {
-                $return['search'][] = '###' . $stringGroupTitle . '_' . $stringGroupCalculatedTitle . '###';
+                $return['search'][] = '###pkEstimateReading_' . $stringGroupTitle . '_' . $stringGroupCalculatedTitle . '###';
                 $return['replace'][] = $stringGroupCalulatedValue;
             }
         }

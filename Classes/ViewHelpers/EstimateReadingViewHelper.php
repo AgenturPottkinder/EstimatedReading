@@ -44,6 +44,6 @@ class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
         {
             throw new Exception('Attribute "variable" of Tag EstimateReading cannot be empty!');
         }
-        return '###' . $arguments['keyword'] . '_' . $arguments['variable'] . '###';
+        return '###pkEstimateReading_' . $arguments['keyword'] . '_' . $arguments['variable'] . '###';
     }
 }
