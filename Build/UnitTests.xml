@@ -1,0 +1,28 @@
+<phpunit
+    backupGlobals="true"
+    backupStaticAttributes="false"
+    bootstrap="../.Build/vendor/autoload.php"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertWarningsToExceptions="true"
+    forceCoversAnnotation="false"
+    processIsolation="false"
+    stopOnError="false"
+    stopOnFailure="false"
+    stopOnIncomplete="false"
+    stopOnSkipped="false"
+    verbose="false"
+>
+	<testsuites>
+        <testsuite name="Project">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+    <logging>
+        <log type="coverage-clover"
+             target="../.Build/tests-clover.xml"/>
+        <log type="junit"
+             target="../.Build/tests-junit.xml"
+             logIncompleteSkipped="false"/>
+    </logging>
+</phpunit>

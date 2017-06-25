@@ -48,6 +48,13 @@ class StringService
         return preg_match_all('/([^\.\!\?]+[\.\?\!]*)/', $string, $match);
     }
 
+    /**
+     * function removeHTML
+     * Removes all tags from given String
+     *
+     * @param string $string
+     * @return string
+     */
     public static function removeHTML(string $string)
     {
         return strip_tags($string);
