@@ -39,7 +39,8 @@ class StringGroup
      * @param string $string
      * @return StringGroup
      */
-    public function __construct(string $string) {
+    public function __construct(string $string)
+    {
         $this->addString($string);
     }
 
@@ -167,8 +168,7 @@ class StringGroup
      */
     public function getRoundedMinutes()
     {
-        if($this->getSeconds() >= 30)
-        {
+        if ($this->getSeconds() >= 30) {
             return $this->getMinutes() + 1;
         }
         return $this->getMinutes();

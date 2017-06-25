@@ -24,8 +24,7 @@ class EstimateReadingService
     public static function getKeywordStringGroup(string $keyword)
     {
         $keyword = self::validateKeyword($keyword);
-        if(!isset($GLOBALS['EXT']['estimatedreading']['stringgroup'][$keyword]))
-        {
+        if (!isset($GLOBALS['EXT']['estimatedreading']['stringgroup'][$keyword])) {
             return new StringGroup('');
         } else {
             return $GLOBALS['EXT']['estimatedreading']['stringgroup'][$keyword];
@@ -41,8 +40,7 @@ class EstimateReadingService
     public static function addStringToKeyword(string $keyword, string $string)
     {
         $keyword = self::validateKeyword($keyword);
-        if(!isset($GLOBALS['EXT']['estimatedreading']['stringgroup'][$keyword]))
-        {
+        if (!isset($GLOBALS['EXT']['estimatedreading']['stringgroup'][$keyword])) {
             $GLOBALS['EXT']['estimatedreading']['stringgroup'][$keyword] = new StringGroup($string);
         } else {
             /**
@@ -65,12 +63,10 @@ class EstimateReadingService
         $orgKeyword = $keyword;
         $keyword = preg_replace('/[^0-9a-zA-Z-_]/', '', $keyword);
         $keyword = trim($keyword);
-        if(strlen($keyword) === 0)
-        {
+        if (strlen($keyword) === 0) {
             throw new \InvalidArgumentException('Keyword for estimated Reading should never be empty');
         }
-        if($orgKeyword != $keyword)
-        {
+        if ($orgKeyword != $keyword) {
             throw new \InvalidArgumentException('Keyword for estimated Reading should not contain special chars. Please use only 0-9 a-zA-Z and -_');
         }
         return $keyword;
@@ -88,11 +84,9 @@ class EstimateReadingService
             'search' => [],
             'replace' => []
         ];
-        foreach($GLOBALS['EXT']['estimatedreading']['stringgroup'] as $stringGroupTitle => $stringGroupContent)
-        {
+        foreach ($GLOBALS['EXT']['estimatedreading']['stringgroup'] as $stringGroupTitle => $stringGroupContent) {
             $stringGroupCalculated = self::buildReplaceValues($stringGroupContent);
-            foreach($stringGroupCalculated as $stringGroupCalculatedTitle => $stringGroupCalulatedValue)
-            {
+            foreach ($stringGroupCalculated as $stringGroupCalculatedTitle => $stringGroupCalulatedValue) {
                 $return['search'][] = '###pkEstimateReading_' . $stringGroupTitle . '_' . $stringGroupCalculatedTitle . '###';
                 $return['replace'][] = $stringGroupCalulatedValue;
             }
@@ -109,11 +103,10 @@ class EstimateReadingService
      */
     protected static function buildReplaceValues($content)
     {
-        $return = array();
+        $return = [];
         self::buildMethodNamesIfRequired($content);
-        foreach(self::$methodNames as $methodName)
-        {
-            $return[$methodName['short']] = call_user_func(array($content, $methodName['long']));
+        foreach (self::$methodNames as $methodName) {
+            $return[$methodName['short']] = call_user_func([$content, $methodName['long']]);
         }
         return $return;
     }
@@ -126,11 +119,9 @@ class EstimateReadingService
      */
     protected static function buildMethodNamesIfRequired($content)
     {
-        if(count(self::$methodNames) === 0)
-        {
+        if (count(self::$methodNames) === 0) {
             $tmpMethodNames = preg_grep('/^get/', get_class_methods($content));
-            foreach($tmpMethodNames as $methodName)
-            {
+            foreach ($tmpMethodNames as $methodName) {
                 self::$methodNames[] = [
                     'short' => lcfirst(substr($methodName, 3)),
                     'long' => $methodName
