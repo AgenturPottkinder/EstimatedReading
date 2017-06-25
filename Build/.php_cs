@@ -34,7 +34,9 @@ if (PHP_SAPI !== 'cli') {
 // Define in which folders to search and which folders to exclude
 // Exclude some directories that are excluded by Git anyways to speed up the sniffing
 $finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__ . '/../');
+    ->in(__DIR__ . '/../')
+    ->exclude(__DIR__ . '../.Build')
+    ->exclude(__DIR__ . '../Build');
 // Return a Code Sniffing configuration using
 // all sniffers needed for PSR-2
 // and additionally:
