@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = [
         'version' => '1.0.0',
         'autoload' => [
             'psr-4' => [
-                'Pottkinder\\PkBkm\\' => 'Classes',
+                'Pottkinder\\Estimatedreading\\' => 'Classes',
             ],
         ],
         'constraints' => [

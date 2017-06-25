@@ -19,6 +19,17 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 class CollectStringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
+    /** 
+     * @var boolean
+     */
+    protected $escapeOutput = false;
+
+    /** 
+     * @var boolean
+     */
+    protected $escapeChildren = false;
+    
+
     /**
      * Initialize arguments
      */
@@ -35,8 +46,9 @@ class CollectStringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
      */
     public function render()
     {
+        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this); die();
         $string = $this->renderChildren();
-        \Pottkinder\Estimatedreading\Service\EstimateReadingService::addStringToKeyword($arguments['keyword'], $string);
+        \Pottkinder\Estimatedreading\Service\EstimateReadingService::addStringToKeyword($this->arguments['keyword'], $string);
         return $string;
     }
 }

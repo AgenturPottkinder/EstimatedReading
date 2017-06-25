@@ -39,11 +39,11 @@ class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
      */
     public function render()
     {
-        $stringGroup = \Pottkinder\Estimatedreading\Service\EstimateReadingService::getStringGroup($arguments['keyword']);
-        if($arguments['variable'] === '')
+        $stringGroup = \Pottkinder\Estimatedreading\Service\EstimateReadingService::getKeywordStringGroup($this->arguments['keyword']);
+        if($this->arguments['variable'] === '')
         {
             throw new Exception('Attribute "variable" of Tag EstimateReading cannot be empty!');
         }
-        return '###pkEstimateReading_' . $arguments['keyword'] . '_' . $arguments['variable'] . '###';
+        return '###pkEstimateReading_' . $this->arguments['keyword'] . '_' . $this->arguments['variable'] . '###';
     }
 }

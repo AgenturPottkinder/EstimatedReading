@@ -113,8 +113,8 @@ class EstimateReadingService
         $return = [];
         self::buildMethodNamesIfRequired($content);
         foreach(self::$methodNames as $methodName)
-        {
-            $return[$methodName['short']] = $content->$$methodName['long'];
+        { 
+            $return[$methodName['short']] = call_user_func(array($content, $methodName['long']));
         }
         return $return;
     }
@@ -128,7 +128,7 @@ class EstimateReadingService
      */
     protected static function buildMethodNamesIfRequired($content)
     {
-        if(length(self::$methodNames) === 0)
+        if(count(self::$methodNames) === 0)
         {
             $tmpMethodNames = preg_grep('/^get/', get_class_methods($content));
             foreach($tmpMethodNames as $methodName)

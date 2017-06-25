@@ -68,6 +68,7 @@ class StringGroup
      */
     public function getChars()
     {
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this);
         return $this->chars;
     }
 
@@ -124,7 +125,7 @@ class StringGroup
      */
     public function getTotalSeconds()
     {
-        return $this->durationInSeconds;
+        return $this->totalSeconds;
     }
 
     /**
@@ -135,13 +136,13 @@ class StringGroup
      */
     public function getSeconds()
     {
-        $tmp  = $this->durationInSeconds;
-        $tmp1 = $tmp / 60 / 60;
-        $tmp2 = $tmp1 - (int) $tmp1;
-        $tmp3 = $tmp2 * 60;
-        $tmp4 = $tmp3 - (int) $tmp3;
-        $tmp5 = $tmp4 * 60;
-        return (int) $tmp5;
+        $tmp  = $this->totalSeconds;
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($tmp, 'first');
+        $tmp -= $this->getHours() * 60 * 60;
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($tmp, 'second');
+        $tmp -= $this->getMinutes() * 60;
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($tmp, 'third');
+        return $tmp;
     }
 
     /**
@@ -152,7 +153,7 @@ class StringGroup
      */
     public function getHours()
     {
-        return (int)($this->durationInSeconds / 60 / 60);
+        return (int)($this->totalSeconds / 60 / 60);
     }
 
     /**
@@ -163,7 +164,7 @@ class StringGroup
      */
     public function getMinutes()
     {
-        return (int)(($this->durationInSeconds - $this->getHours() * 60 * 60) / 60);
+        return (int)(($this->totalSeconds - $this->getHours() * 60 * 60) / 60);
     }
 
     /**
@@ -189,6 +190,6 @@ class StringGroup
      */
     public function getTotalMinutes()
     {
-        return (int)($this->durationInSeconds / 60);
+        return (int)($this->totalSeconds / 60);
     }
 }
