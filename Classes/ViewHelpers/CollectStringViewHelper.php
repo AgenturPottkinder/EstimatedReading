@@ -1,9 +1,6 @@
 <?php
 namespace Pottkinder\Estimatedreading\ViewHelpers;
 
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-
 /**
  * ViewHelper to collect informations about the substring
  *
@@ -14,21 +11,19 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * <output>
  * The normal Output
  * </output>
- *
  */
 class CollectStringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
-    /** 
-     * @var boolean
+    /**
+     * @var bool
      */
     protected $escapeOutput = false;
 
-    /** 
-     * @var boolean
+    /**
+     * @var bool
      */
     protected $escapeChildren = false;
-    
 
     /**
      * Initialize arguments

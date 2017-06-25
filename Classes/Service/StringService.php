@@ -6,6 +6,12 @@ namespace Pottkinder\Estimatedreading\Service;
  */
 class StringService
 {
+    /**
+     * function fetchStatistics
+     * Gets HTML and returns only the numbers about it.
+     *
+     * @return string $string
+     */
     public static function fetchStatistics(string $string)
     {
         $string = self::removeHTML($string);
@@ -21,7 +27,7 @@ class StringService
      * function getWordCount
      * Returns amount of words for $string
      * Don't forget to run self::removeHTML before using this.
-     * 
+     *
      * @param string $string
      */
     public static function getWordCount(string $string)
@@ -41,7 +47,7 @@ class StringService
     {
         return preg_match_all('/([^\.\!\?]+[\.\?\!]*)/', $string, $match);
     }
-    
+
     public static function removeHTML(string $string)
     {
         return strip_tags($string);

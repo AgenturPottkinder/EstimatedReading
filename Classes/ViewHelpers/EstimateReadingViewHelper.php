@@ -1,9 +1,6 @@
 <?php
 namespace Pottkinder\Estimatedreading\ViewHelpers;
 
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-
 /**
  * ViewHelper to display informations about given StringGroup
  *
@@ -18,7 +15,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  *  Warning: This will only output a placeholder which will be replaced with a hook later
  *           Working with a hook is required in order to show times and counts before the content is shown
  *           e.g.: "Reading the following blog article takes 5 minutes." shows 5 minutes before the blog article
- *           is shown. 
+ *           is shown.
  */
 class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -34,7 +31,7 @@ class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 
     /**
      * function render
-     * 
+     *
      * @return \string
      */
     public function render()

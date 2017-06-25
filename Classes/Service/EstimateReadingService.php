@@ -26,7 +26,7 @@ class EstimateReadingService
         $keyword = self::validateKeyword($keyword);
         if(!isset($GLOBALS['EXT']['estimatedreading']['stringgroup'][$keyword]))
         {
-            return new StringGroup("");
+            return new StringGroup('');
         } else {
             return $GLOBALS['EXT']['estimatedreading']['stringgroup'][$keyword];
         }
@@ -37,7 +37,6 @@ class EstimateReadingService
      *
      * @param string $keyword
      * @param string $string
-     * @return void
      */
     public static function addStringToKeyword(string $keyword, string $string)
     {
@@ -64,15 +63,15 @@ class EstimateReadingService
     public static function validateKeyword(string $keyword)
     {
         $orgKeyword = $keyword;
-        $keyword = preg_replace("/[^0-9a-zA-Z-_]/", '', $keyword);
+        $keyword = preg_replace('/[^0-9a-zA-Z-_]/', '', $keyword);
         $keyword = trim($keyword);
         if(strlen($keyword) === 0)
         {
-            throw new \InvalidArgumentException("Keyword for estimated Reading should never be empty");
+            throw new \InvalidArgumentException('Keyword for estimated Reading should never be empty');
         }
         if($orgKeyword != $keyword)
         {
-            throw new \InvalidArgumentException("Keyword for estimated Reading should not contain special chars. Please use only 0-9 a-zA-Z and -_");
+            throw new \InvalidArgumentException('Keyword for estimated Reading should not contain special chars. Please use only 0-9 a-zA-Z and -_');
         }
         return $keyword;
     }
@@ -104,16 +103,16 @@ class EstimateReadingService
     /**
      * function buildReplaceValues
      * Generates an array with all Getters from StringGroup associated with it's value
-     * 
+     *
      * @param \Pottkinder\Estimatedreading\Model\StringGroup $content
      * @return array
      */
     protected static function buildReplaceValues($content)
     {
-        $return = [];
+        $return = array();
         self::buildMethodNamesIfRequired($content);
         foreach(self::$methodNames as $methodName)
-        { 
+        {
             $return[$methodName['short']] = call_user_func(array($content, $methodName['long']));
         }
         return $return;
@@ -122,9 +121,8 @@ class EstimateReadingService
     /**
      * function buildMethodNamesIfRequired
      * Shorts all Get Methods from StringGroup for replacement strings
-     * 
+     *
      * @param \Pottkinder\Estimatedreading\Model\StringGroup $content
-     * @return void
      */
     protected static function buildMethodNamesIfRequired($content)
     {

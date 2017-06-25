@@ -39,8 +39,7 @@ class StringGroup
      * @param string $string
      * @return StringGroup
      */
-    public function __construct(string $string)
-    {
+    public function __construct(string $string) {
         $this->addString($string);
     }
 
@@ -48,7 +47,6 @@ class StringGroup
      * Adds string to local object
      *
      * @param string $string
-     * @return void
      */
     public function addString(string $string)
     {
@@ -68,7 +66,6 @@ class StringGroup
      */
     public function getChars()
     {
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this);
         return $this->chars;
     }
 
@@ -108,8 +105,6 @@ class StringGroup
     /**
      * function rebuildEstimatedReading
      * recalculates the needed amount of seconds
-     *
-     * @return void
      */
     public function rebuildEstimatedReading()
     {
