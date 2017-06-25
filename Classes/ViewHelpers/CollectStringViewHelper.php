@@ -46,7 +46,6 @@ class CollectStringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
      */
     public function render()
     {
-        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this); die();
         $string = $this->renderChildren();
         \Pottkinder\Estimatedreading\Service\EstimateReadingService::addStringToKeyword($this->arguments['keyword'], $string);
         return $string;

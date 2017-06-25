@@ -137,11 +137,8 @@ class StringGroup
     public function getSeconds()
     {
         $tmp  = $this->totalSeconds;
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($tmp, 'first');
         $tmp -= $this->getHours() * 60 * 60;
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($tmp, 'second');
         $tmp -= $this->getMinutes() * 60;
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($tmp, 'third');
         return $tmp;
     }
 
