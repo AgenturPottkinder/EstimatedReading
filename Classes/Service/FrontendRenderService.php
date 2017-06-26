@@ -40,10 +40,8 @@ class FrontendRenderService
     protected static function updateContent(&$parameters, $unCached = true)
     {
         $tsfe = &$parameters['pObj'];
-        if ($tsfe instanceof \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController) {
-            if ($tsfe->isINTincScript() === $unCached) {
-                self::replace($tsfe->content);
-            }
+        if ($tsfe instanceof \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController && $tsfe->isINTincScript() === $unCached) {
+            self::replace($tsfe->content);
         }
     }
 

@@ -19,6 +19,7 @@ namespace Pottkinder\Estimatedreading\ViewHelpers;
  */
 class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
     /**
      * Initialize arguments
      */
@@ -36,7 +37,6 @@ class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
      */
     public function render()
     {
-        $stringGroup = \Pottkinder\Estimatedreading\Service\EstimateReadingService::getKeywordStringGroup($this->arguments['keyword']);
         if ($this->arguments['variable'] === '') {
             throw new Exception('Attribute "variable" of Tag EstimateReading cannot be empty!');
         }
