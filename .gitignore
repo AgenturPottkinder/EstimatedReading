@@ -3,3 +3,5 @@
 .php_cs.cache
 composer.lock
 .Build
+Build/tests-*
+.sonar
