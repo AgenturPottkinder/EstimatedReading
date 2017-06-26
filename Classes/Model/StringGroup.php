@@ -132,8 +132,8 @@ class StringGroup
      */
     public function getSeconds()
     {
-        return $this->totalSeconds 
-                - $this->getHours() * 60 * 60 
+        return $this->totalSeconds
+                - $this->getHours() * 60 * 60
                 - $this->getMinutes() * 60;
     }
 
