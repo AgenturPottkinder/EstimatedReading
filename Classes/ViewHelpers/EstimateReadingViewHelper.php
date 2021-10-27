@@ -17,7 +17,7 @@ namespace Pottkinder\Estimatedreading\ViewHelpers;
  *           e.g.: "Reading the following blog article takes 5 minutes." shows 5 minutes before the blog article
  *           is shown.
  */
-class EstimateReadingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class EstimateReadingViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
     /**

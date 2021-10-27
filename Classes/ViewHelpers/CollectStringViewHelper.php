@@ -12,7 +12,7 @@ namespace Pottkinder\Estimatedreading\ViewHelpers;
  * The normal Output
  * </output>
  */
-class CollectStringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class CollectStringViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
     /**
